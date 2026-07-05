@@ -101,6 +101,10 @@ function clearGrid() {
     allCells.forEach(cell => {
         cell.classList.remove("grid-cell-drawn");
     });
+
+    // Also reset the draw pointer position
+    currentRow = Math.floor(gridSize / 2);
+    currentCol = Math.floor(gridSize / 2);
 }
 
 /**

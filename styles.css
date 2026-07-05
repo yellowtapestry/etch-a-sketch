@@ -1,6 +1,18 @@
+body {
+    min-height: 100vh;
+    background-color: #b80505;
+}
+
 #header {
     display: flex;
-    align-content: center;
+    justify-content: space-evenly; /* horizontal centering */
+    font-family: "Comic Sans MS", "Marker Felt", cursive;
+    color: #efc114;
+}
+#header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1rem;
 }
 
 #grid-container {
@@ -8,11 +20,16 @@
     flex-direction: column;
     flex: 1 1 auto;
 
-    width: min(160vw, 800px);
+    width: min(100vw, 800px);
     aspect-ratio: 1 / 1;
 
     justify-content: center;
     margin: 0 auto;
+    background-color: #c5c5c3;
+
+    /* Screen indent simulation */
+    border: 12px solid #910404;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.88);
 }
 
 .grid-row {
@@ -22,18 +39,40 @@
 
 .grid-cell {
     flex: 1;
-    border: 1px solid black;
+    border: 1px solid #c5c5c3;
     box-sizing: border-box;
 }
 
 .grid-cell-drawn {
-    background-color: #000000;
-}
-
-#reset-button {
-
+    background-color: #494949;
 }
 
 
+#button-container {
+    display: flex;
+    justify-content: space-between;
 
-g
+    align-items: center;
+    padding-top: 20px;
+    width: min(80vw, 800px);
+    margin: 20px auto 0;
+}
+
+button {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+
+    background-color: #e8e8e8;
+    border: 5px solid #8b1e1e;
+    font-family: "Chalkboard SE", "Marker Felt", cursive;
+    color: #424242;
+
+    box-shadow:
+            inset 0 0 10px rgba(0, 0, 0, 0.38),
+            0 4px 8px rgba(0, 0, 0, 0.35);
+}
+
+button:hover {
+    background-color: #9a9a9a;
+}
