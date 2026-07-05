@@ -33,20 +33,21 @@ function handleDrawEvent(event) {
     }
 
     event.preventDefault();
-    drawCurrentCell();
 
     // Then proceed to move the position of the draw pointer after drawing
     if (event.key === "ArrowUp") {
-        currentCol--;
-    } else if (event.key === "ArrowDown") {
-        currentCol++;
-    } else if (event.key === "ArrowLeft") {
         currentRow--;
-    } else if (event.key === "ArrowRight") {
+    } else if (event.key === "ArrowDown") {
         currentRow++;
+    } else if (event.key === "ArrowLeft") {
+        currentCol--;
+    } else if (event.key === "ArrowRight") {
+        currentCol++;
     } else {
         return; // Do nothing if not an arrow key
     }
+
+    drawCurrentCell();
 
     // Bounds check: Make sure the draw pointer does not flow off the gird
     currentRow = Math.max(0, Math.min(currentRow, gridSize - 1));
@@ -74,7 +75,7 @@ function createGrid(size) {
 
         for (let col = 0; col < size; col++) {
             let newCell = document.createElement('div');
-            newCell.textContent = `${String(col)}`;
+            // newCell.textContent = `${String(col)}`; /* Debug */
             newCell.className = "grid-cell";
             newCell.id = `cell-${row}-${col}`;
 
@@ -114,15 +115,36 @@ function deleteGrid() {
  */
 function resetSketch() {
     clearGrid();
-    // Then proceed to ask user for new grid size
-    let newGridSize = prompt("Enter size of new sketchpad: ");
+    // Then proceed to ask user for new grid size, handle validation
+    let input = prompt("Enter size of new sketchpad: ");
     deleteGrid();
 
-    let grid_status = createGrid(Number(newGridSize));
+    let size; /* Parsed input number */
+    while (true) {
+        if (input === null) {
+            return; // user pressed Cancel
+        }
 
-    while (grid_status < 0) {
-        newGridSize = prompt("Invalid Size Entered: ");
+        if (input.trim() === "") {
+            input = prompt("Please enter a number:");
+            continue;
+        }
+
+        // Now do number validation checks
+        size = Number(input);
+
+        if (!Number.isInteger(size)) {
+            input = prompt("Please enter a whole number:");
+            continue;
+        }
+
+        if (size <= 0 || size > 100) {
+            input = prompt("Please enter a number between 1 and 100:");
+            continue;
+        }
+        break;
     }
+    createGrid(size);
 }
 
 /**

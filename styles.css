@@ -1,21 +1,29 @@
 #header {
     display: flex;
-    align: center;
+    align-content: center;
 }
 
 #grid-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     flex: 1 1 auto;
-    flex-direction: row;
+
+    width: min(160vw, 800px);
+    aspect-ratio: 1 / 1;
+
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.grid-row {
+    display: flex;
+    flex: 1;
 }
 
 .grid-cell {
-    display: flex;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 2px;
+    flex: 1;
+    border: 1px solid black;
+    box-sizing: border-box;
 }
 
 .grid-cell-drawn {
@@ -28,3 +36,4 @@
 
 
 
+g
